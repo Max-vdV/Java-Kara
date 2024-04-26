@@ -96,7 +96,9 @@
         <XmlPoint x="4" y="0"/>
         <XmlPoint x="4" y="1"/>
     </XmlWallPoints>
-    <XmlObstaclePoints/>
+    <XmlObstaclePoints>
+        <XmlPoint x="0" y="0"/>
+    </XmlObstaclePoints>
     <XmlPaintedfieldPoints>
         <XmlPoint type="0" x="5" y="5"/>
         <XmlPoint type="0" x="7" y="5"/>
@@ -106,6 +108,7 @@
         <XmlPoint type="0" x="17" y="5"/>
         <XmlPoint type="0" x="19" y="5"/>
         <XmlPoint type="0" x="23" y="5"/>
+        <XmlPoint type="1" x="25" y="5"/>
     </XmlPaintedfieldPoints>
     <XmlKaraList>
         <XmlKara direction="3" name="Kara" x="1" y="5"/>

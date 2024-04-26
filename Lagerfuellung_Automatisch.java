@@ -1,12 +1,17 @@
 import javakara.JavaKaraProgram;
         
-public class Lagerfuellung2 extends JavaKaraProgram {
+public class Lagerfuellung_Automatisch extends JavaKaraProgram {
 
 int pos_x = 0;
 int gate = 4;
 int at_gate = 0;
-int gate_start= 0;
-int schrittInGate = 0;                                                    
+int gate_start = 0;
+int schrittInGate = 0;  
+boolean fehlermeldung = false;
+
+// 1= Container liefern; 2= Container abholen
+int auftrag = 1;
+                                                  
 
   public void myProgram() {
     geheZuLagereingang();
@@ -15,7 +20,13 @@ int schrittInGate = 0;
     placeOrTakeContainer();
     moveOutGate();
     geheZuLagerAusgang();
-    geheZuStartpunkt();
+    if(fehlermeldung == false){
+      geheZuStartpunkt();
+    }else{
+      geheZuMelder();
+    }
+
+
       
   }
  
@@ -89,10 +100,18 @@ int schrittInGate = 0;
   }
 
   public void placeOrTakeContainer(){
-      if(istContainerDa()){
-        kara.removeLeaf();
-      }else{
-        kara.putLeaf();
+    if(auftrag == 1){
+          if(istContainerDa()){
+            fehlermeldung = true;
+          }else{
+            kara.putLeaf();
+          }
+      } else {
+          if(istContainerDa()){
+            kara.removeLeaf();
+          }else{
+            fehlermeldung = true;
+          }
       }
   } 
 
@@ -127,6 +146,18 @@ int schrittInGate = 0;
       while (canMove()) {
         kara.move();
       } kara.turnLeft();
+  }
+
+  public void geheZuMelder(){
+    while (pos_x >= 0) {
+      kara.move();
+      pos_x--;
+    }
+      kara.turnRight();
+      while (canMove()) {
+        kara.move();
+      } kara.turnLeft();
+
   }
 
   
